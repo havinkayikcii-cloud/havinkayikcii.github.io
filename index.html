@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Havin · Econoclast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --color-bg: #ffffff;
+      --color-bg-secondary: #f7f7f5;
+      --color-text-primary: #1a1a1a;
+      --color-text-secondary: #555550;
+      --color-text-tertiary: #888780;
+      --color-border: rgba(0,0,0,0.12);
+      --color-border-hover: rgba(0,0,0,0.22);
+      --purple-main: #534AB7;
+      --purple-dark: #3C3489;
+      --purple-light: #EEEDFE;
+      --purple-mid: #AFA9EC;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #1a1a1a;
+        --color-bg-secondary: #242424;
+        --color-text-primary: #f0f0ed;
+        --color-text-secondary: #aaa99f;
+        --color-text-tertiary: #666660;
+        --color-border: rgba(255,255,255,0.12);
+        --color-border-hover: rgba(255,255,255,0.22);
+        --purple-light: #26215C;
+        --purple-mid: #534AB7;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.7;
+    }
+
+    .site {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid var(--color-border);
+      margin-bottom: 5rem;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--purple-main); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--color-text-primary); }
+
+    /* Hero */
+    .hero { margin-bottom: 6rem; }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--purple-main);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-headline {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--purple-main);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--color-text-secondary);
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2.5rem;
+    }
+
+    .tag {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 0.5px solid var(--color-border-hover);
+      color: var(--color-text-secondary);
+      background: var(--color-bg-secondary);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: var(--radius-md);
+      background: var(--purple-dark);
+      color: var(--purple-light);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.15s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; }
+
+    .btn-secondary {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: var(--radius-md);
+      background: transparent;
+      color: var(--color-text-primary);
+      border: 0.5px solid var(--color-border-hover);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+    }
+
+    .btn-secondary:hover { background: var(--color-bg-secondary); }
+
+    /* Divider */
+    .divider {
+      height: 0.5px;
+      background: var(--color-border);
+      margin: 4rem 0;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: 2rem;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .about-text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--color-text-secondary);
+    }
+
+    .about-text p + p { margin-top: 1rem; }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stat-item {
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      background: var(--color-bg-secondary);
+      border: 0.5px solid var(--color-border);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--purple-main);
+      letter-spacing: -1px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 1.5rem;
+    }
+
+    .piece-card {
+      background: var(--color-bg);
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .piece-card:hover {
+      border-color: var(--color-border-hover);
+      background: var(--color-bg-secondary);
+    }
+
+    .piece-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--purple-main);
+      margin-bottom: 0.6rem;
+    }
+
+    .piece-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .piece-desc {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .piece-arrow {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--purple-main);
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    .substack-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 1.75rem;
+      border: 0.5px solid var(--purple-mid);
+      border-radius: var(--radius-lg);
+      background: var(--purple-light);
+      margin-top: 1.5rem;
+    }
+
+    .substack-cta-text {
+      font-size: 14px;
+      color: var(--purple-dark);
+      font-weight: 500;
+    }
+
+    .substack-cta-sub {
+      font-size: 13px;
+      color: var(--purple-main);
+      margin-top: 2px;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-intro {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--color-text-secondary);
+    }
+
+    .contact-intro strong {
+      color: var(--color-text-primary);
+      font-weight: 500;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 14px;
+      color: var(--purple-main);
+      text-decoration: none;
+    }
+
+    .contact-email:hover { text-decoration: underline; }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      border: 0.5px solid var(--color-border-hover);
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      width: 100%;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--purple-main);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: var(--radius-md);
+      background: var(--purple-dark);
+      color: var(--purple-light);
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      font-family: var(--font-sans);
+      transition: opacity 0.15s;
+    }
+
+    .form-submit:hover { opacity: 0.88; }
+
+    /* Footer */
+    footer {
+      margin-top: 5rem;
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-name {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--color-text-tertiary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--color-text-secondary); }
+
+    /* Responsive */
+    @media (max-width: 580px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1.25rem; }
+      .substack-cta { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+
+    <nav>
+      <a href="#" class="nav-logo">Eco<span>noclast</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <p class="hero-eyebrow">Freelance writer · Business analysis</p>
+      <h1 class="hero-headline">Economics and finance,<br>written for <em>real people.</em></h1>
+      <p class="hero-sub">I break down markets, policy, and financial systems in a way that doesn't make your eyes glaze over. Business analysis with an economics brain — and a Gen Z voice that younger audiences actually want to read.</p>
+      <div class="hero-tags">
+        <span class="tag">Business analysis</span>
+        <span class="tag">Fintech</span>
+        <span class="tag">Economic policy</span>
+        <span class="tag">Markets</span>
+        <span class="tag">Gen Z audiences</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://substack.com/@econoclastt" class="btn-primary">Read Econoclast <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <a href="#contact" class="btn-secondary">Work with me</a>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="about" style="margin-bottom: 5rem;">
+      <p class="section-label">About</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm Havin — a writer at the intersection of economics, finance, and the way young people actually experience money and markets.</p>
+          <p>Most finance writing is either too academic to be useful or too shallow to be interesting. I sit somewhere in the middle: research-backed, critical analysis that reads like a conversation, not a textbook.</p>
+          <p>I write for companies and publications that want to reach audiences who are smart, skeptical, and tired of being talked down to.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number">7+</div>
+            <div class="stat-label">Published pieces across economics and finance</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Core niches: tech, finance, economic policy</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Gen Z</div>
+            <div class="stat-label">The audience I write for — and speak to naturally</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="writing" style="margin-bottom: 5rem;">
+      <p class="section-label">Writing</p>
+      <div class="portfolio-grid">
+        <!-- PIECE 1 -->
+        <a href="https://econoclast1.substack.com/p/the-avoidantly-attached-thieves-hidden" class="piece-card">
+          <p class="piece-tag">Economics &amp; inequality</p>
+          <p class="piece-title">The Avoidantly Attached Thieves Hidden in City Maps</p>
+          <p class="piece-desc">How redlining, apartheid, and male-centric urban planning embed inequality directly into city maps.</p>
+          <p class="piece-arrow">Read <i class="ti ti-arrow-right" aria-hidden="true"></i></p>
+        </a>
+        <!-- PIECE 2 -->
+        <a href="https://econoclast1.substack.com/p/the-myth-of-quick-fixes" class="piece-card">
+          <p class="piece-tag">Economic policy</p>
+          <p class="piece-title">The Myth of Quick Fixes</p>
+          <p class="piece-desc">Why slow-moving institutional damage — like Iran's revolution — can't be undone by sudden bursts of protest or policy.</p>
+          <p class="piece-arrow">Read <i class="ti ti-arrow-right" aria-hidden="true"></i></p>
+        </a>
+        <!-- PIECE 3 -->
+        <a href="https://econoclast1.substack.com/p/looksmaxing-is-a-recession-indicator" class="piece-card">
+          <p class="piece-tag">Behavioural economics</p>
+          <p class="piece-title">"Looksmaxing" is a Recession Indicator</p>
+          <p class="piece-desc">When people lose economic agency, they turn inward — and the self-improvement boom is the data to prove it.</p>
+          <p class="piece-arrow">Read <i class="ti ti-arrow-right" aria-hidden="true"></i></p>
+        </a>
+        <!-- PIECE 4 -->
+        <a href="https://econoclast1.substack.com/p/a-suggestion-for-an-alternate-way" class="piece-card">
+          <p class="piece-tag">Behavioural science</p>
+          <p class="piece-title">A Suggestion for an Alternate Way of Influencing Human Behavior</p>
+          <p class="piece-desc">Why fear campaigns backfire — and what behavioural science says actually moves people to act.</p>
+          <p class="piece-arrow">Read <i class="ti ti-arrow-right" aria-hidden="true"></i></p>
+        </a>
+        <!-- PIECE 5 -->
+        <a href="https://econoclast1.substack.com/p/unintended-effects-of-travel" class="piece-card">
+          <p class="piece-tag">Culture &amp; society</p>
+          <p class="piece-title">Unintended Effects of Travel</p>
+          <p class="piece-desc">The things travel gives you that you didn't pay for — and why they're the most valuable part.</p>
+          <p class="piece-arrow">Read <i class="ti ti-arrow-right" aria-hidden="true"></i></p>
+        </a>
+        <!-- PIECE 6 -->
+        <a href="https://econoclast1.substack.com/p/YOUR-PIECE-6" class="piece-card">
+          <p class="piece-tag">Fintech</p>
+          <p class="piece-title">Your piece title here</p>
+          <p class="piece-desc">One or two sentences describing what this piece argues or explores.</p>
+          <p class="piece-arrow">Read <i class="ti ti-arrow-right" aria-hidden="true"></i></p>
+        </a>
+        <!-- PIECE 7 -->
+        <a href="https://econoclast1.substack.com/p/YOUR-PIECE-7" class="piece-card">
+          <p class="piece-tag">Markets</p>
+          <p class="piece-title">Your piece title here</p>
+          <p class="piece-desc">One or two sentences describing what this piece argues or explores.</p>
+          <p class="piece-arrow">Read <i class="ti ti-arrow-right" aria-hidden="true"></i></p>
+        </a>
+      </div>
+      <div class="substack-cta">
+        <div>
+          <p class="substack-cta-text">All writing lives on Econoclast</p>
+          <p class="substack-cta-sub">Economics and finance, unpacked weekly</p>
+        </div>
+        <a href="https://econoclast1.substack.com" class="btn-primary">Open Substack <i class="ti ti-external-link" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="contact" style="margin-bottom: 3rem;">
+      <p class="section-label">Contact</p>
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <p>I'm open to <strong>freelance commissions</strong>, contributor arrangements, and ongoing content partnerships.</p>
+          <p style="margin-top: 1rem;">Best fit: publications and companies targeting younger audiences who want economics and finance explained without the jargon or the condescension.</p>
+          <!-- Replace with your real email -->
+          <a href="mailto:your@email.com" class="contact-email">your@email.com</a>
+        </div>
+        <!-- Replace ACTION with your Formspree endpoint: https://formspree.io/f/xxxxxxxx -->
+        <form class="contact-form" action="https://formspree.io/f/xeewvpaw" method="POST">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <input type="text" name="company" placeholder="Publication or company" />
+          <textarea name="message" placeholder="What are you working on?" required></textarea>
+          <button type="submit" class="form-submit">Send message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-name">Havin · Econoclast</span>
+      <ul class="footer-links">
+        <li><a href="https://substack.com/@econoclastt" target="_blank" rel="noopener">Substack</a></li>
+        <!-- Replace with your LinkedIn URL -->
+        <li><a href="https://linkedin.com/in/YOUR-PROFILE" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </footer>
+
+  </div>
+</body>
+</html>
